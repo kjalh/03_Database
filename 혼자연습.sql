@@ -1,0 +1,38 @@
+use ai;
+select * from member;
+
+
+
+
+USE ai;
+CREATE TABLE PRA1(
+	idx INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    aaa VARCHAR(50)
+);
+
+CREATE TABLE PRA2(
+	idx INT,
+    name VARCHAR(50),
+    CONSTRAINT FOREIGN KEY (idx) REFERENCES PRA1(idx) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO PRA1(name, aaa) VALUES('가','AAA'),('나', 'BBB'), ('다', 'CCC');
+
+DROP TABLE PRA1;
+
+SELECT * FROM PRA1;
+
+INSERT INTO PRA2(idx, name)
+SELECT idx, name
+FROM PRA1;
+
+SELECT * FROM PRA2;
+
+DELETE FROM PRA1 WHERE idx = 2;
+SHOW CREATE TABLE PRA1;
+
+SELECT VERSION();
+
+USE mysql; -- 데이터베이스 선택 
+SELECT user, host FROM user; -- USER가 누군지 확인
